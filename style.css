@@ -1,0 +1,154 @@
+:root {
+	font-family: "Red Hat Text", sans-serif;
+}
+html {
+	height: 100%;
+}
+body {
+	height: 100%;
+	margin: 0;
+  padding: 0 0 20px 0;
+	background: url(images/bg-stars.svg);
+	background-size: cover;
+	background-color: hsl(251deg 19% 12%);
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+body #hills {
+	width: 100%;
+	position: absolute;
+	bottom: 0%;
+	left: 0%;
+	z-index: -1;
+}
+#title {
+	font-size: 2rem;
+	color: white;
+}
+#timer {
+	display: flex;
+	justify-content: space-evenly;
+	margin: 35vh max(10%, 0px);
+	width: 1280px;
+}
+#timer .item {
+	position: relative;
+	display: flex;
+}
+#timer .item .text {
+	position: absolute;
+	top: -50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: gray;
+	font-size: 1.5rem;
+}
+.container {
+	margin: 0 0.1em;
+	border-radius: 10px;
+	width: 100px;
+	height: 160px;
+	color: white;
+	background-color: #243930;
+	font-size: 6rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0 2px 20px 2px rgb(0 0 0);
+	transform-style: preserve-3d;
+	transform: perspective(9cm) rotateX(0deg) rotateY(0deg);
+}
+#up,
+#up_back,
+#down_back,
+#down {
+	width: 100%;
+	position: absolute;
+	border-radius: 10px;
+	top: 0;
+	z-index: 0;
+	left: 0;
+	height: 100%;
+	color: white;
+	background: #243930;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 6rem;
+	backface-visibility: hidden;
+	transform-origin: 50% calc(50% - 0px);
+}
+#up_back {
+	clip-path: inset(0% 0% 50% 0%);
+}
+
+#down_back {
+	clip-path: inset(50% 0% 0% 0%);
+	transform: rotateX(90deg);
+	z-index: 1;
+	animation: down_back 0.5s linear 0.5s forwards;
+}
+
+#up {
+	clip-path: inset(0% 0% 50% 0%);
+	animation: up 1s linear forwards;
+}
+
+#down {
+	clip-path: inset(50% 0% 0% 0%);
+	animation: down 1s linear forwards;
+}
+@keyframes down_back {
+	0% {
+		transform: rotateX(90deg);
+	}
+	100% {
+		transform: rotateX(0deg);
+	}
+}
+@keyframes up {
+	0% {
+		transform: rotateX(0deg);
+		filter: brightness(1);
+	}
+	100% {
+		transform: rotateX(-180deg);
+		filter: brightness(0.5);
+	}
+}
+@keyframes down {
+	0% {
+		filter: brightness(1);
+	}
+
+	100% {
+		filter: brightness(0.5);
+	}
+}
+
+.container::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 0;
+	z-index: 5;
+	width: 100%;
+	height: 3px;
+	transform: translateY(-50%);
+	background-color: rgba(128, 128, 128, 0.5);
+	transform: translateZ(5px);
+	box-shadow: -1px -8px 20px 1.5px black;
+}
+.attribution {
+	font-size: 1rem;
+	text-align: center;
+}
+.attribution a {
+	color: hsl(228, 45%, 44%);
+}
+#down_back.no{
+	transform: rotateX(0deg);
+	animation: none;
+}
